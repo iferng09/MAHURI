@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MyApp</string>
+    <string name="connection_test">Connection Test</string>
+    <string name="up">up</string>
+    <string name="up_arrow">Up Arrow</string>
+    <string name="right_arrow">Right Arrow</string>
+    <string name="left_arrow">Left Arrow</string>
+    <string name="down_arrow">Down Arrow</string>
+</resources>
