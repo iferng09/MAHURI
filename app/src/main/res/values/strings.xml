@@ -6,4 +6,5 @@
     <string name="right_arrow">Right Arrow</string>
     <string name="left_arrow">Left Arrow</string>
     <string name="down_arrow">Down Arrow</string>
+    <string name="stop">STOP</string>
 </resources>

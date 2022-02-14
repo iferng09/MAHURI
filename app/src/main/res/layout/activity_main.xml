@@ -7,11 +7,11 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/botonConexion"
+        android:id="@+id/botonStop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
-        android:text="@string/connection_test" />
+        android:text="@string/stop" />
 
     <FrameLayout
         android:layout_width="223dp"
