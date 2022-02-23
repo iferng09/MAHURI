@@ -1,11 +1,23 @@
 package com.iferng09.myapp
 
+import android.app.Activity
+import android.content.ActivityNotFoundException
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
+import android.content.Intent
+import android.speech.RecognizerIntent
+import android.widget.Toast
+import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        private const val REQUEST_CODE_STT = 1
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -38,5 +50,73 @@ class MainActivity : AppCompatActivity() {
         botonStop.setOnClickListener{
             connection.sendMsg("STOP")
         }
+
+        botonListen.setOnClickListener{
+            //getSpeechInput()
+            val sttIntent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+            sttIntent.putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+            )
+            sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
+            sttIntent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak now!")
+
+            try {
+                startActivityForResult(sttIntent, REQUEST_CODE_STT)
+            } catch (e: ActivityNotFoundException) {
+                e.printStackTrace()
+                Toast.makeText(this, "Your device does not support STT.", Toast.LENGTH_LONG).show()
+            }
+        }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when (requestCode) {
+            REQUEST_CODE_STT -> {
+                if (resultCode == Activity.RESULT_OK && data != null) {
+                    val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+                    result?.let {
+                        val txt = it[0]
+                        Toast.makeText(this, txt, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        }
+    }
+
+    /*private fun getSpeechInput() {
+        val intent = Intent(RecognizerIntent
+            .ACTION_RECOGNIZE_SPEECH)
+        intent.putExtra(
+            RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+            RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+        )
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
+            Locale.getDefault())
+
+        if (intent.resolveActivity(packageManager) != null)
+        {
+            startActivityForResult(intent, 10)
+        } else
+        {
+            //Mensaje pequeño en la parte inferior de la pantalla en modo flotante
+            Toast.makeText(this,"Your Device Doesn't Support Speech Input", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int,
+                                  resultCode: Int, data: Intent?, connection: Connection) {
+        super.onActivityResult(requestCode,
+            resultCode, data)
+        when (requestCode) {
+            10 -> if (resultCode == RESULT_OK &&
+                data != null)
+            {
+                val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+                var txt = result!![0]
+                Toast.makeText(this, txt, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }*/
 }
