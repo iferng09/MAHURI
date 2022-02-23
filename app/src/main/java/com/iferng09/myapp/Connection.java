@@ -39,7 +39,7 @@ public class Connection{
 
                 if (s == null) {
                     //change it to your IP
-                    s = new Socket("192.168.78.207", 6000);
+                    s = new Socket("192.168.1.85", 6000);
                     writer = new PrintWriter(s.getOutputStream());
                     Log.d("javaClass", "CONNECTED");
                 }
