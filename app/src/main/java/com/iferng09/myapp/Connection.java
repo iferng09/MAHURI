@@ -18,13 +18,6 @@ public class Connection{
 
     }
 
-    public void connect(int contador){
-        this.contador = contador;
-        this.mens = String.valueOf(contador);
-        BackGroundTask b1 = new BackGroundTask();
-        b1.execute();
-    }
-
     public void sendMsg(String msg){
         this.mens = msg;
         BackGroundTask b1 = new BackGroundTask();

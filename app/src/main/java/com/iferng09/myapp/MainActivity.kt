@@ -15,8 +15,8 @@ class MainActivity : AppCompatActivity() {
         val botonDown = findViewById<ImageButton>(R.id.downButton)
         val botonRight = findViewById<ImageButton>(R.id.rightButton)
         val botonLeft = findViewById<ImageButton>(R.id.letfButton)
+        val botonListen = findViewById<Button>(R.id.btn_listen)
 
-        var contador = 1;
         val connection = Connection()
 
         botonUp.setOnClickListener {

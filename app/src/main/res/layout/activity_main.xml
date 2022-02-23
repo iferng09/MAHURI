@@ -6,13 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/botonStop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:text="@string/stop" />
-
     <FrameLayout
         android:layout_width="223dp"
         android:layout_height="196dp"
@@ -51,6 +44,20 @@
             android:layout_gravity="center|end"
             android:contentDescription="@string/right_arrow"
             app:srcCompat="@drawable/ic_baseline_arrow_right" />
+
+        <Button
+            android:id="@+id/botonStop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|center"
+            android:text="@string/stop" />
     </FrameLayout>
+
+    <Button
+        android:id="@+id/btn_listen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:text="@string/listen" />
 
 </FrameLayout>
