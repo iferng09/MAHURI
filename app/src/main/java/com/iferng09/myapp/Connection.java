@@ -12,7 +12,6 @@ public class Connection{
     Socket s;
     PrintWriter writer;
     String mens;
-    int contador;
 
     public Connection(){
 
@@ -36,8 +35,23 @@ public class Connection{
                     writer = new PrintWriter(s.getOutputStream());
                     Log.d("javaClass", "CONNECTED");
                 }
-                writer.write(mens);
-                writer.flush();
+
+                if(mens.equals("arriba") || mens.equals("adelante")){
+                    mens = "UP";
+                } else if(mens.equals("abajo") || mens.equals("atrás")){
+                    mens = "DOWN";
+                } else if(mens.equals("derecha")){
+                    mens = "RIGHT";
+                } else if(mens.equals("izquierda")){
+                    mens = "LEFT";
+                } else if(mens.equals("stop")){
+                    mens = "STOP";
+                }
+
+                if(mens.equals("UP") || mens.equals("DOWN") || mens.equals("LEFT") || mens.equals("RIGHT") || mens.equals("STOP")){
+                    writer.write(mens);
+                    writer.flush();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

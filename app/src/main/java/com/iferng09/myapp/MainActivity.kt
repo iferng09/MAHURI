@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         private const val REQUEST_CODE_STT = 1
     }
 
+    private val connection = Connection()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,7 +31,6 @@ class MainActivity : AppCompatActivity() {
         val botonLeft = findViewById<ImageButton>(R.id.letfButton)
         val botonListen = findViewById<Button>(R.id.btn_listen)
 
-        val connection = Connection()
 
         botonUp.setOnClickListener {
             connection.sendMsg("UP")
@@ -79,44 +80,10 @@ class MainActivity : AppCompatActivity() {
                     result?.let {
                         val txt = it[0]
                         Toast.makeText(this, txt, Toast.LENGTH_SHORT).show()
+                        connection.sendMsg(txt)
                     }
                 }
             }
         }
     }
-
-    /*private fun getSpeechInput() {
-        val intent = Intent(RecognizerIntent
-            .ACTION_RECOGNIZE_SPEECH)
-        intent.putExtra(
-            RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-            RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
-        )
-        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE,
-            Locale.getDefault())
-
-        if (intent.resolveActivity(packageManager) != null)
-        {
-            startActivityForResult(intent, 10)
-        } else
-        {
-            //Mensaje pequeño en la parte inferior de la pantalla en modo flotante
-            Toast.makeText(this,"Your Device Doesn't Support Speech Input", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    override fun onActivityResult(requestCode: Int,
-                                  resultCode: Int, data: Intent?, connection: Connection) {
-        super.onActivityResult(requestCode,
-            resultCode, data)
-        when (requestCode) {
-            10 -> if (resultCode == RESULT_OK &&
-                data != null)
-            {
-                val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
-                var txt = result!![0]
-                Toast.makeText(this, txt, Toast.LENGTH_SHORT).show()
-            }
-        }
-    }*/
 }
