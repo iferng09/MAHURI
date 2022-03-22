@@ -6,60 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <FrameLayout
-        android:layout_width="223dp"
-        android:layout_height="196dp"
-        android:layout_gravity="center">
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container"
+        android:name="com.iferng09.myapp.ControlPadFragment"
+        android:layout_width="match_parent"
+        android:layout_height="674dp"
+        app:layout_constraintBottom_toTopOf="@+id/barraNavegacion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageButton
-            android:id="@+id/upButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|top"
-            android:contentDescription="@string/up_arrow"
-            android:minHeight="48dp"
-            app:srcCompat="@drawable/ic_baseline_arrow_up" />
-
-        <ImageButton
-            android:id="@+id/letfButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|start"
-            android:contentDescription="@string/left_arrow"
-            android:minHeight="48dp"
-            app:srcCompat="@drawable/ic_baseline_arrow_left"
-            tools:ignore="ImageContrastCheck" />
-
-        <ImageButton
-            android:id="@+id/downButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
-            android:contentDescription="@string/down_arrow"
-            app:srcCompat="@drawable/ic_baseline_arrow_down" />
-
-        <ImageButton
-            android:id="@+id/rightButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|end"
-            android:contentDescription="@string/right_arrow"
-            app:srcCompat="@drawable/ic_baseline_arrow_right"
-            tools:ignore="ImageContrastCheck" />
-
-        <Button
-            android:id="@+id/botonStop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|center"
-            android:text="@string/stop" />
-    </FrameLayout>
-
-    <Button
-        android:id="@+id/btn_listen"
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/barraNavegacion"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center|bottom"
-        android:text="@string/listen" />
+        android:layout_gravity="bottom"
+        app:menu="@menu/bottom_menu"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </FrameLayout>

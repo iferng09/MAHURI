@@ -1,89 +1,55 @@
 package com.iferng09.myapp
 
-import android.app.Activity
-import android.content.ActivityNotFoundException
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageButton
-import android.content.Intent
-import android.speech.RecognizerIntent
-import android.widget.Toast
-import java.util.*
+import androidx.fragment.app.Fragment
 
 
 class MainActivity : AppCompatActivity() {
-
-    companion object {
-        private const val REQUEST_CODE_STT = 1
-    }
-
-    private val connection = Connection()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val botonStop = findViewById<Button>(R.id.botonStop)
-        val botonUp = findViewById<ImageButton>(R.id.upButton)
-        val botonDown = findViewById<ImageButton>(R.id.downButton)
-        val botonRight = findViewById<ImageButton>(R.id.rightButton)
-        val botonLeft = findViewById<ImageButton>(R.id.letfButton)
-        val botonListen = findViewById<Button>(R.id.btn_listen)
+        val cameraFragment = CameraFragment()
+        val controlPadFragment = ControlPadFragment()
+        val micFragment = MicFragment()
+        val roomsFragment = RoomsFragment()
 
+        val barraNavegacion = findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.barraNavegacion)
 
-        botonUp.setOnClickListener {
-            connection.sendMsg("UP")
-        }
+        barraNavegacion.setOnItemSelectedListener{
+            when(it.itemId){
+                R.id.nav_controlPad -> {
+                    setCurrentFragment(controlPadFragment)
+                    true
+                }
 
-        botonDown.setOnClickListener {
-            connection.sendMsg("DOWN")
-        }
+                R.id.nav_camera -> {
+                    setCurrentFragment(cameraFragment)
+                    true
+                }
 
-        botonLeft.setOnClickListener {
-            connection.sendMsg("LEFT")
-        }
+                R.id.nav_mic -> {
+                    setCurrentFragment(micFragment)
+                    true
+                }
 
-        botonRight.setOnClickListener {
-            connection.sendMsg("RIGHT")
-        }
+                R.id.nav_rooms -> {
+                    setCurrentFragment(roomsFragment)
+                    true
+                }
 
-        botonStop.setOnClickListener{
-            connection.sendMsg("STOP")
-        }
-
-        botonListen.setOnClickListener{
-            //getSpeechInput()
-            val sttIntent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
-            sttIntent.putExtra(
-                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
-            )
-            sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
-            sttIntent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak now!")
-
-            try {
-                startActivityForResult(sttIntent, REQUEST_CODE_STT)
-            } catch (e: ActivityNotFoundException) {
-                e.printStackTrace()
-                Toast.makeText(this, "Your device does not support STT.", Toast.LENGTH_LONG).show()
+                else -> false
             }
         }
+
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        when (requestCode) {
-            REQUEST_CODE_STT -> {
-                if (resultCode == Activity.RESULT_OK && data != null) {
-                    val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
-                    result?.let {
-                        val txt = it[0]
-                        Toast.makeText(this, txt, Toast.LENGTH_SHORT).show()
-                        connection.sendMsg(txt)
-                    }
-                }
-            }
+    private fun setCurrentFragment(fragment: Fragment){
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.container, fragment)
+            commit()
         }
     }
 }
