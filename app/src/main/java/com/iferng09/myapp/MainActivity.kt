@@ -2,41 +2,54 @@ package com.iferng09.myapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageButton
+import androidx.fragment.app.Fragment
+
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val botonStop = findViewById<Button>(R.id.botonStop)
-        val botonUp = findViewById<ImageButton>(R.id.upButton)
-        val botonDown = findViewById<ImageButton>(R.id.downButton)
-        val botonRight = findViewById<ImageButton>(R.id.rightButton)
-        val botonLeft = findViewById<ImageButton>(R.id.letfButton)
+        val cameraFragment = CameraFragment()
+        val controlPadFragment = ControlPadFragment()
+        val micFragment = MicFragment()
+        val roomsFragment = RoomsFragment()
 
-        var contador = 1;
-        val connection = Connection()
+        val barraNavegacion = findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.barraNavegacion)
 
-        botonUp.setOnClickListener {
-            connection.sendMsg("UP")
+        barraNavegacion.setOnItemSelectedListener{
+            when(it.itemId){
+                R.id.nav_controlPad -> {
+                    setCurrentFragment(controlPadFragment)
+                    true
+                }
+
+                R.id.nav_camera -> {
+                    setCurrentFragment(cameraFragment)
+                    true
+                }
+
+                R.id.nav_mic -> {
+                    setCurrentFragment(micFragment)
+                    true
+                }
+
+                R.id.nav_rooms -> {
+                    setCurrentFragment(roomsFragment)
+                    true
+                }
+
+                else -> false
+            }
         }
 
-        botonDown.setOnClickListener {
-            connection.sendMsg("DOWN")
-        }
+    }
 
-        botonLeft.setOnClickListener {
-            connection.sendMsg("LEFT")
-        }
-
-        botonRight.setOnClickListener {
-            connection.sendMsg("RIGHT")
-        }
-
-        botonStop.setOnClickListener{
-            connection.sendMsg("STOP")
+    private fun setCurrentFragment(fragment: Fragment){
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.container, fragment)
+            commit()
         }
     }
 }
