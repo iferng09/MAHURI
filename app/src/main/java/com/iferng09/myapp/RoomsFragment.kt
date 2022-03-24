@@ -6,16 +6,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.activityViewModels
 
 
 class RoomsFragment : Fragment(R.layout.fragment_rooms) {
 
+    private lateinit var connection:Connection
+
+    private val viewModel: FragmentViewModel by activityViewModels()
+    
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val view : View = inflater.inflate(R.layout.fragment_rooms, container, false)
+        viewModel.data.observe(viewLifecycleOwner) {
+            connection = it
+        }
         val botonSalon = view.findViewById<Button>(R.id.btn_Salon)
         val botonCocina = view.findViewById<Button>(R.id.btn_cocina)
         val botonHabitacion = view.findViewById<Button>(R.id.btn_Habitacion)

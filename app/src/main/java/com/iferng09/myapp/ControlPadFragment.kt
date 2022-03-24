@@ -7,22 +7,25 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
-import androidx.fragment.app.FragmentContainer
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModel
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ControlPadFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class ControlPadFragment : Fragment() {
+class ControlPadFragment : Fragment(R.layout.fragment_control_pad) {
+
+    private lateinit var connection:Connection
+
+    private val viewModel: FragmentViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val view : View = inflater.inflate(R.layout.fragment_control_pad, container, false)
-        val connection = Connection()
+        //val connection = Connection()
+        viewModel.data.observe(viewLifecycleOwner) {
+            connection = it
+        }
         val botonStop = view.findViewById<Button>(R.id.botonStop)
         val botonUp = view.findViewById<ImageButton>(R.id.upButton)
         val botonDown = view.findViewById<ImageButton>(R.id.downButton)
@@ -50,5 +53,9 @@ class ControlPadFragment : Fragment() {
         }
 
         return view;
+    }
+
+    fun setConnection(mainConnection: Connection){
+        this.connection = mainConnection
     }
 }

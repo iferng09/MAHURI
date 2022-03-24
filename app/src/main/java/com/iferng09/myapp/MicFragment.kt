@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import java.util.*
 
 class MicFragment : Fragment() {
@@ -19,12 +20,19 @@ class MicFragment : Fragment() {
         private const val REQUEST_CODE_STT = 1
     }
 
+    private lateinit var connection:Connection
+
+    private val viewModel: FragmentViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_mic, container, false)
+        viewModel.data.observe(viewLifecycleOwner) {
+            connection = it
+        }
         val botonListen = view.findViewById<Button>(R.id.btn_listen)
         botonListen.setOnClickListener{
             //getSpeechInput()
@@ -55,7 +63,6 @@ class MicFragment : Fragment() {
                     result?.let {
                         val txt = it[0]
                         //Toast.makeText(this, txt, Toast.LENGTH_SHORT).show()
-                        val connection = Connection()
                         connection.sendMsg(txt)
                     }
                 }
