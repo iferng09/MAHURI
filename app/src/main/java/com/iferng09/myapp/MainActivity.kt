@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
 
         val barraNavegacion = findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.barraNavegacion)
 
+        
+
         barraNavegacion.setOnItemSelectedListener{
             when(it.itemId){
                 R.id.nav_controlPad -> {
