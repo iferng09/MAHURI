@@ -2,7 +2,10 @@ package com.iferng09.myapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
@@ -16,10 +19,16 @@ class MainActivity : AppCompatActivity() {
         val micFragment = MicFragment()
         val roomsFragment = RoomsFragment()
 
-        val barraNavegacion = findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.barraNavegacion)
+        val barraNavegacion = findViewById<BottomNavigationView>(R.id.barraNavegacion)
 
-        barraNavegacion.setOnItemSelectedListener{
-            when(it.itemId){
+        val connection = Connection()
+        val fragmentViewModel : FragmentViewModel by viewModels()
+        fragmentViewModel.setData(connection)
+
+        controlPadFragment.setConnection(connection)
+
+        barraNavegacion.setOnItemSelectedListener {
+            when (it.itemId) {
                 R.id.nav_controlPad -> {
                     setCurrentFragment(controlPadFragment)
                     true
@@ -46,7 +55,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun setCurrentFragment(fragment: Fragment){
+    private fun setCurrentFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.container, fragment)
             commit()

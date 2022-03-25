@@ -12,6 +12,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_control_pad.xml" value="0.35625" />
         <entry key="app/src/main/res/layout/fragment_mic.xml" value="0.35625" />
+        <entry key="app/src/main/res/layout/fragment_rooms.xml" value="0.35625" />
         <entry key="app/src/main/res/menu/bottom_menu.xml" value="0.35625" />
       </map>
     </option>

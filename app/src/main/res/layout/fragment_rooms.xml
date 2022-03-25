@@ -5,10 +5,24 @@
     android:layout_height="match_parent"
     tools:context=".RoomsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <Button
+        android:id="@+id/btn_cocina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|start"
+        android:text="@string/cocina" />
 
+    <Button
+        android:id="@+id/btn_Salon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|end"
+        android:text="@string/salon" />
+
+    <Button
+        android:id="@+id/btn_Habitacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/habitaci_n" />
 </FrameLayout>
