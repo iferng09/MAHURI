@@ -25,8 +25,6 @@ class MainActivity : AppCompatActivity() {
         val fragmentViewModel : FragmentViewModel by viewModels()
         fragmentViewModel.setData(connection)
 
-        controlPadFragment.setConnection(connection)
-
         barraNavegacion.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_controlPad -> {

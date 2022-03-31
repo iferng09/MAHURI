@@ -28,6 +28,18 @@ class RoomsFragment : Fragment(R.layout.fragment_rooms) {
         val botonCocina = view.findViewById<Button>(R.id.btn_cocina)
         val botonHabitacion = view.findViewById<Button>(R.id.btn_Habitacion)
 
+        botonSalon.setOnClickListener{
+            connection.sendMsg("SALON")
+        }
+
+        botonCocina.setOnClickListener{
+            connection.sendMsg("COCINA")
+        }
+
+        botonHabitacion.setOnClickListener{
+            connection.sendMsg("HABITACION")
+        }
+
         return view
     }
 }

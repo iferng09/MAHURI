@@ -48,7 +48,8 @@ public class Connection{
                     mens = "STOP";
                 }
 
-                if(mens.equals("UP") || mens.equals("DOWN") || mens.equals("LEFT") || mens.equals("RIGHT") || mens.equals("STOP")){
+                if(mens.equals("UP") || mens.equals("DOWN") || mens.equals("LEFT") || mens.equals("RIGHT") || mens.equals("STOP")
+                        || mens.equals("COCINA") || mens.equals("SALON") || mens.equals("HABITACION")){
                     writer.write(mens);
                     writer.flush();
                 }

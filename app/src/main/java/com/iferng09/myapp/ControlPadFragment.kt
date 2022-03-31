@@ -21,7 +21,7 @@ class ControlPadFragment : Fragment(R.layout.fragment_control_pad) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view : View = inflater.inflate(R.layout.fragment_control_pad, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_control_pad, container, false)
         //val connection = Connection()
         viewModel.data.observe(viewLifecycleOwner) {
             connection = it
@@ -48,14 +48,10 @@ class ControlPadFragment : Fragment(R.layout.fragment_control_pad) {
             connection.sendMsg("RIGHT")
         }
 
-        botonStop.setOnClickListener{
+        botonStop.setOnClickListener {
             connection.sendMsg("STOP")
         }
 
         return view;
-    }
-
-    fun setConnection(mainConnection: Connection){
-        this.connection = mainConnection
     }
 }
