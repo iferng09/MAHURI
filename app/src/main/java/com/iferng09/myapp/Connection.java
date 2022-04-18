@@ -46,10 +46,16 @@ public class Connection{
                     mens = "LEFT";
                 } else if(mens.equals("stop")){
                     mens = "STOP";
+                } else if(mens.equals("cocina")){
+                    mens = "COCINA";
+                } else if(mens.equals("salón")){
+                    mens = "SALON";
+                } else if(mens.equals("habitación")){
+                    mens = "HABITACION";
                 }
 
                 if(mens.equals("UP") || mens.equals("DOWN") || mens.equals("LEFT") || mens.equals("RIGHT") || mens.equals("STOP")
-                        || mens.equals("COCINA") || mens.equals("SALON") || mens.equals("HABITACION")){
+                        || mens.equals("COCINA") || mens.equals("SALON") || mens.equals("HABITACION") || mens.equals("CAMARA")){
                     writer.write(mens);
                     writer.flush();
                 }
