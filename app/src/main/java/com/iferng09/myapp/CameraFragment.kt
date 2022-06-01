@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.VideoView
+import android.widget.ImageView
 import androidx.fragment.app.activityViewModels
 
 
@@ -19,13 +19,13 @@ class CameraFragment : Fragment(R.layout.fragment_camera) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: View = inflater.inflate(R.layout.fragment_rooms, container, false)
-        viewModel.data.observe(viewLifecycleOwner) {
-            connection = it
-        }
+        val view: View = inflater.inflate(R.layout.fragment_camera, container, false)
 
-        val img = view.findViewById<VideoView>(R.id.img)
-        connection.sendMsg("CAMARA")
+        val img = view.findViewById<ImageView>(R.id.img)
+
+        //val camera = CameraConnection()
+
+        //img.setImageBitmap(camera.getBitmap())
 
         return view
     }

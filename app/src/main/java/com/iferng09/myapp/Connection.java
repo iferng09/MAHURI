@@ -1,7 +1,6 @@
 package com.iferng09.myapp;
 
 import android.os.AsyncTask;
-import android.os.Handler;
 import android.util.Log;
 
 import java.io.IOException;
