@@ -1,5 +1,6 @@
 package com.iferng09.myapp
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.fragment.app.activityViewModels
+import java.util.concurrent.TimeUnit
 
 
 class CameraFragment : Fragment(R.layout.fragment_camera) {
@@ -23,10 +25,17 @@ class CameraFragment : Fragment(R.layout.fragment_camera) {
 
         val img = view.findViewById<ImageView>(R.id.img)
 
-        //val camera = CameraConnection()
+        val camera = CameraConnection()
 
-        //img.setImageBitmap(camera.getBitmap())
+        while(true) {
+            camera.receiveImg()
+            //TimeUnit.SECONDS.sleep(1)
 
-        return view
+            img.setImageBitmap(camera.getBitmap())
+
+            println("HHHHH: "+ img)
+
+            return view
+        }
     }
 }

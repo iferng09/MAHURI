@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_controlPad"
-        android:title="Control pad"
+        android:title="Remote control"
         android:icon="@drawable/ic_baseline_gamepad_24"/>
 
     <item
         android:id="@+id/nav_rooms"
-        android:title="Rooms"
+        android:title="Navigation"
         android:icon="@drawable/ic_baseline_map_24"/>
     <item
         android:id="@+id/nav_mic"

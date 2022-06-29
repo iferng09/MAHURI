@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.iferng09.myapp.CameraFragment as CameraFragment
 
 
 class MainActivity : AppCompatActivity() {

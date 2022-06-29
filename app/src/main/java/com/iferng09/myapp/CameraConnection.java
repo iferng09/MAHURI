@@ -2,42 +2,83 @@ package com.iferng09.myapp;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 
-import java.io.DataInputStream;
+import java.io.BufferedInputStream;
+import java.io.IOException;
 import java.io.InputStream;
-import java.net.ServerSocket;
 import java.net.Socket;
 
-public class CameraConnection implements Runnable{
+public class CameraConnection{
     Bitmap bitmap;
+    Socket s;
 
     public CameraConnection(){
 
     }
 
-    @Override
-    public void run(){
-        try{
-            ServerSocket s = new ServerSocket(6001);
+    public void receiveImg(){
+        BackGroundTask b1 = new BackGroundTask();
+        b1.execute();
+    }
 
-            Socket socket = s.accept();
+    class BackGroundTask extends AsyncTask<String, Void, Void> {
 
-            InputStream is = socket.getInputStream();
+        @Override
+        protected Void doInBackground(String... voids) {
+            try {
 
-            DataInputStream dis = new DataInputStream(is);
+                if (s == null) {
+                    //change it to your IP
+                    s = new Socket("192.168.1.85", 6001);
+                }
 
-            int len = dis.readInt();
+                //ObjectInputStream ois = new ObjectInputStream(s.getInputStream());
 
-            byte[] data = new byte[len];
 
-            bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
 
-            dis.close();
+                //DataInputStream dis = new DataInputStream(is);
 
-            is.close();
+                //int len = dis.read();
+                while(true) {
+                    byte[] data = new byte[345600];
 
-        } catch (Exception e){
-            System.out.println("Error recibiendo imagen: " + e);
+                    //byte[] image = is.read(data);
+
+                    /*try {
+                        Object image = ois.readObject();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }*/
+                    InputStream is = s.getInputStream();
+
+                    int n = is.read(data);
+
+                    //int size = ByteBuffer.wrap(data).asIntBuffer().get();
+
+                    //byte[] img = new byte[size];
+                    //is.read(img);
+
+                    is = new BufferedInputStream(is);
+
+                    System.out.println("IS:"+n);
+                    System.out.println();
+
+                    //bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
+                    bitmap = BitmapFactory.decodeStream(is);
+
+                    //is.reset();
+
+                    //System.out.println(bitmap.getByteCount());
+                }
+
+                //is.close();
+                //dis.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
         }
     }
 
