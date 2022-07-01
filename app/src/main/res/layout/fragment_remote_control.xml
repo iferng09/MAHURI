@@ -49,10 +49,13 @@
 
         <Button
             android:id="@+id/botonStop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
             android:layout_gravity="center|center"
-            android:text="@string/stop" />
+            android:backgroundTint="#E61B0C"
+            android:text="@string/stop"
+            android:textSize="11sp"
+            android:textStyle="bold" />
     </FrameLayout>
 
 </FrameLayout>

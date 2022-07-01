@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import java.util.*
@@ -33,7 +34,7 @@ class MicFragment : Fragment() {
         viewModel.data.observe(viewLifecycleOwner) {
             connection = it
         }
-        val botonListen = view.findViewById<Button>(R.id.btn_listen)
+        val botonListen = view.findViewById<ImageButton>(R.id.btn_listen)
         botonListen.setOnClickListener{
             //getSpeechInput()
             val sttIntent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
@@ -42,7 +43,7 @@ class MicFragment : Fragment() {
                 RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
             )
             sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault())
-            sttIntent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak now!")
+            sttIntent.putExtra(RecognizerIntent.EXTRA_PROMPT, "¡Habla ahora!")
 
             try {
                 startActivityForResult(sttIntent, REQUEST_CODE_STT)
