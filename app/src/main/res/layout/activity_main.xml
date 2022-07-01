@@ -8,7 +8,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container"
-        android:name="com.iferng09.myapp.ControlPadFragment"
+        android:name="com.iferng09.myapp.RemoteControlFragment"
         android:layout_width="match_parent"
         android:layout_height="674dp"
         app:layout_constraintBottom_toTopOf="@+id/barraNavegacion"

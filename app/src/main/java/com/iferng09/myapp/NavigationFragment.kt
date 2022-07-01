@@ -9,7 +9,7 @@ import android.widget.Button
 import androidx.fragment.app.activityViewModels
 
 
-class RoomsFragment : Fragment(R.layout.fragment_rooms) {
+class NavigationFragment : Fragment(R.layout.fragment_navigation) {
 
     private lateinit var connection:Connection
 
@@ -20,7 +20,7 @@ class RoomsFragment : Fragment(R.layout.fragment_rooms) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view : View = inflater.inflate(R.layout.fragment_rooms, container, false)
+        val view : View = inflater.inflate(R.layout.fragment_navigation, container, false)
         viewModel.data.observe(viewLifecycleOwner) {
             connection = it
         }

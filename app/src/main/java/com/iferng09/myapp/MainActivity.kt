@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.iferng09.myapp.CameraFragment as CameraFragment
 
@@ -16,9 +15,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val cameraFragment = CameraFragment()
-        val controlPadFragment = ControlPadFragment()
+        val remoteControlFragment = RemoteControlFragment()
         val micFragment = MicFragment()
-        val roomsFragment = RoomsFragment()
+        val navigationFragment = NavigationFragment()
 
         val barraNavegacion = findViewById<BottomNavigationView>(R.id.barraNavegacion)
 
@@ -29,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         barraNavegacion.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.nav_controlPad -> {
-                    setCurrentFragment(controlPadFragment)
+                    setCurrentFragment(remoteControlFragment)
                     true
                 }
 
@@ -44,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.nav_rooms -> {
-                    setCurrentFragment(roomsFragment)
+                    setCurrentFragment(navigationFragment)
                     true
                 }
 

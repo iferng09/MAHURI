@@ -8,9 +8,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModel
 
-class ControlPadFragment : Fragment(R.layout.fragment_control_pad) {
+class RemoteControlFragment : Fragment(R.layout.fragment_remote_control) {
 
     private lateinit var connection:Connection
 
@@ -21,7 +20,7 @@ class ControlPadFragment : Fragment(R.layout.fragment_control_pad) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: View = inflater.inflate(R.layout.fragment_control_pad, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_remote_control, container, false)
         //val connection = Connection()
         viewModel.data.observe(viewLifecycleOwner) {
             connection = it
