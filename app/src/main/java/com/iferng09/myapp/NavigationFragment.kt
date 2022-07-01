@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 
 class NavigationFragment : Fragment(R.layout.fragment_navigation) {
@@ -24,6 +26,7 @@ class NavigationFragment : Fragment(R.layout.fragment_navigation) {
         viewModel.data.observe(viewLifecycleOwner) {
             connection = it
         }
+
         val botonSalon = view.findViewById<Button>(R.id.btn_Salon)
         val botonCocina = view.findViewById<Button>(R.id.btn_cocina)
         val botonHabitacion = view.findViewById<Button>(R.id.btn_Habitacion)
