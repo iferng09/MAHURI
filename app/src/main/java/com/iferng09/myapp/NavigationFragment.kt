@@ -5,9 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
@@ -27,21 +26,20 @@ class NavigationFragment : Fragment(R.layout.fragment_navigation) {
             connection = it
         }
 
-        val botonSalon = view.findViewById<Button>(R.id.btn_Salon)
-        val botonCocina = view.findViewById<Button>(R.id.btn_cocina)
-        val botonHabitacion = view.findViewById<Button>(R.id.btn_Habitacion)
+        val myDataset = Datasource().loadAffirmations()
 
-        botonSalon.setOnClickListener{
-            connection.sendMsg("SALON")
-        }
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view)
+        var adapter = ItemAdapter(this, myDataset)
+        recyclerView.adapter = adapter
+        adapter.setOnItemClickListener(object : ItemAdapter.onItemClickListener{
+            override fun onItemClick(position: Int) {
+                connection.sendMsg(position.toString())
+            }
 
-        botonCocina.setOnClickListener{
-            connection.sendMsg("COCINA")
-        }
+        })
 
-        botonHabitacion.setOnClickListener{
-            connection.sendMsg("HABITACION")
-        }
+        recyclerView.setHasFixedSize(true)
+
 
         return view
     }

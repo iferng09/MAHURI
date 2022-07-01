@@ -45,11 +45,11 @@ public class Connection{
                     mens = "LEFT";
                 } else if(mens.equals("stop")){
                     mens = "STOP";
-                } else if(mens.equals("cocina")){
+                } else if(mens.equals("cocina") || mens.equals("1")){
                     mens = "COCINA";
-                } else if(mens.equals("salón")){
+                } else if(mens.equals("salón") || mens.equals("0")){
                     mens = "SALON";
-                } else if(mens.equals("habitación")){
+                } else if(mens.equals("habitación") || mens.equals("2")){
                     mens = "HABITACION";
                 }
 
