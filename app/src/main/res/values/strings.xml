@@ -8,10 +8,10 @@
     <string name="down_arrow">Down Arrow</string>
     <string name="stop">STOP</string>
     <string name="listen">Listen</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="habitaci_n">Habitación</string>
-    <string name="salon">Salon</string>
+    <string name="salon">Salón</string>
     <string name="cocina">Cocina</string>
     <string name="MIC">mic</string>
 </resources>

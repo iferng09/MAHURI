@@ -8,11 +8,12 @@
 
     <ImageButton
         android:id="@+id/btn_listen"
-        android:layout_width="99dp"
-        android:layout_height="99dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_gravity="center|center"
         android:contentDescription="@string/MIC"
         android:minHeight="48dp"
         app:srcCompat="@drawable/ic_baseline_mic_40" />
+
 
 </FrameLayout>
