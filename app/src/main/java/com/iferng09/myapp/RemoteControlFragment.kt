@@ -15,16 +15,19 @@ class RemoteControlFragment : Fragment(R.layout.fragment_remote_control) {
 
     private val viewModel: FragmentViewModel by activityViewModels()
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_remote_control, container, false)
-        //val connection = Connection()
+
         viewModel.data.observe(viewLifecycleOwner) {
             connection = it
         }
+
         val botonStop = view.findViewById<Button>(R.id.botonStop)
         val botonUp = view.findViewById<ImageButton>(R.id.upButton)
         val botonDown = view.findViewById<ImageButton>(R.id.downButton)

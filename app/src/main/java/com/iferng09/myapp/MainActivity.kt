@@ -22,8 +22,13 @@ class MainActivity : AppCompatActivity() {
         val barraNavegacion = findViewById<BottomNavigationView>(R.id.barraNavegacion)
 
         val connection = Connection()
+        //val cameraConnection = CameraConnection()
         val fragmentViewModel : FragmentViewModel by viewModels()
         fragmentViewModel.setData(connection)
+
+        //val cameraConnection = CameraConnection()
+        //fragmentViewModel.setCamera(cameraConnection)
+
 
         barraNavegacion.setOnItemSelectedListener {
             when (it.itemId) {

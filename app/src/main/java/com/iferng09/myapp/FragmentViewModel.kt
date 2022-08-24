@@ -9,4 +9,5 @@ class FragmentViewModel : ViewModel(){
     fun setData(newConnection: Connection){
         data.value = newConnection
     }
+
 }

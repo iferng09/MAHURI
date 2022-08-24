@@ -1,6 +1,5 @@
 package com.iferng09.myapp
 
-import android.graphics.Bitmap
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,9 +11,9 @@ import java.util.concurrent.TimeUnit
 
 
 class CameraFragment : Fragment(R.layout.fragment_camera) {
-    private lateinit var connection:Connection
+    //private lateinit var connection:CameraConnection
 
-    private val viewModel: FragmentViewModel by activityViewModels()
+    //private val viewModel: CameraViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,17 +22,19 @@ class CameraFragment : Fragment(R.layout.fragment_camera) {
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_camera, container, false)
 
+        /*viewModel.data.observe(viewLifecycleOwner) {
+            connection = it
+        }*/
+
         val img = view.findViewById<ImageView>(R.id.img)
 
-        val camera = CameraConnection()
+        val connection = CameraConnection()
 
         while(true) {
-            camera.receiveImg()
-            //TimeUnit.SECONDS.sleep(1)
+            connection.receiveImg()
+            TimeUnit.SECONDS.sleep(4)
 
-            img.setImageBitmap(camera.getBitmap())
-
-            println("HHHHH: "+ img)
+            img.setImageBitmap(connection.getBitmap())
 
             return view
         }
